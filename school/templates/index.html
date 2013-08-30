@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{%block body%}
+	<div class="panel panel-primary">
+		<div class="panel-heading">Listado de Jornadas</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre Jornada</th>
+						<th>Fecha de creaci&oacute;n</th>
+						<th>Fecha de modificaci&oacute;n</th>
+						<th class="text-center">Acciones</th>
+					</tr>
+					{%for j in jornadas%}
+					<tr>
+						<td>
+							<strong>{{j.name|title}}</strong>
+						</td>
+						<td>
+							{{j.date_added}}
+						</td>
+						<td>
+							{{j.date_modified}}
+						</td>
+						<td class="text-center">
+							<a href="{% url 'school.views.editJornada' j.id %}" title="Editar jornada {{j.name|title}}">
+								<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							
+							<a href="{% url 'school.views.deleteJornada' j.id %}" title="Eliminar jornada {{j.name|title}}" data-delete="{{j.name}}">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</td>
+					</tr>
+					{%endfor%}
+				</table>
+				{%if not jornadas%}<p>No hay jornadas</p>{%endif%}
+				<a href="{% url 'school.views.newJornada'%}" class="btn btn-success pull-right">
+					<span class="glyphicon glyphicon-plus"></span> Nueva Jornada
+				</a>
+			</div>
+		</div>
+	</div>
+{%endblock%}
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("a").tooltip({"placement":"left"}).on("click", function (e){
+			if($(this).attr("data-delete")){
+				e.preventDefault();
+				if (confirm("Seguro que quiere eliminar la jornada: "+ $(this).attr("data-delete") + "?")){
+					top.location = $(this).attr("href");
+				}
+			}
+		})
+	})
+</script>
+{%endblock%}
