@@ -108,7 +108,7 @@ def newPAcademico(request):
 
 
 def editPAcademico(request, id_pAcademico):
-	art = getJornadaById(id_pAcademico)
+	art = getPAcademicoById(id_pAcademico)
 	from school.forms import PAcademicoForm
 	if request.method == "POST":
 		form = PAcademicoForm(request.POST, instance=art)
@@ -130,5 +130,5 @@ def deletePAcademico(request, id_pAcademico):
 	art = getPAcademicoById(id_pAcademico)
 	if art:
 		art.delete()
-		return HttpResponseRedirect("/programass#eliminado")
+		return HttpResponseRedirect("/programas#eliminado")
 	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")

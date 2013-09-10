@@ -9,6 +9,6 @@ jornadas_urls = patterns('school',
 PAcademico_urls = patterns('school',
     (r'^$', 'views.listarPAcademico'),
     (r'^new', 'views.newPAcademico'),
-    (r'^edit/(?P<id_programa>.*)', 'views.editPAcademico'),
-    (r'^delete/(?P<id_programa>.*)', 'views.deletePAcademico'),
+    (r'^edit/(?P<id_pAcademico>.*)', 'views.editPAcademico'),
+    (r'^delete/(?P<id_pAcademico>.*)', 'views.deletePAcademico'),
 )
