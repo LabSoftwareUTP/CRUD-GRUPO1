@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{%block body%}
+
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>Nombre Programas Academicos</th>
+						<th>Fecha de creaci&oacute;n</th>
+					
+						<th class="text-center">Acciones</th>
+					</tr>
+					{%for j in programas%}
+					<tr>
+						<td>
+							<strong>{{j.nombre|title}}</strong>
+						</td>
+						<td>
+							{{j.fecha_creacion}}
+						</td>
+						
+						<td class="text-center">
+							<a href="{% url 'school.views.editPAcademico' j.id %}" title="Editar programa {{j.nombre|title}}">
+								<span class="glyphicon glyphicon-edit"></span>
+							</a>
+							
+							<a href="{% url 'school.views.deletePAcademico' j.id %}" title="Eliminar programa {{j.nombre|title}}" data-delete="{{j.nombre}}">
+								<span class="glyphicon glyphicon-trash"></span>
+							</a>
+						</td>
+					</tr>
+					{%endfor%}
+				</table>
+				{%if not programas%}<p>No hay programas</p>{%endif%}
+				<a href="{% url 'school.views.newPAcademico'%}" class="btn btn-success pull-right">
+					<span class="glyphicon glyphicon-plus"></span> Nuevo Programa
+				</a>
+				
+
+			</div>
+		</div>
+	</div>
+{%endblock%}
+{%block js%}
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("a").tooltip({"placement":"left"}).on("click", function (e){
+			if($(this).attr("data-delete")){
+				e.preventDefault();
+				if (confirm("Seguro que quiere eliminar el programa academico: "+ $(this).attr("data-delete") + "?")){
+					top.location = $(this).attr("href");
+				}
+			}	
+		})
+	})
+</script>
+{%endblock%}

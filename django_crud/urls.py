@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'website.views.home', name='home'),
     # url(r'^django_crud/', include('django_crud.foo.urls')),
     url(r'^jornadas/', include(jornadas_urls)),
+    url(r'^programas/', include(PAcademico_urls)),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

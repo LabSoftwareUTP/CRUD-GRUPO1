@@ -10,3 +10,14 @@ class Jornada(models.Model):
 
     def __unicode__(self):
         return "%s" % (self.name)
+
+
+class ProgramasAcademico(models.Model):
+	
+	nombre = models.CharField(max_length=100, null=False)
+	activo = models.BooleanField(default=True, null=False)
+	fecha_creacion = models.DateField(auto_now_add=True, null=False)
+	id_jornada = models.ForeignKey(Jornada, null=False)
+	
+	def __unicode__(self):
+			return self.nombre

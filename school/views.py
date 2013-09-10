@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from school.models import Jornada
+from school.models import ProgramasAcademico
 from django.template import RequestContext
 
 def getAllJornadas():
@@ -66,4 +67,68 @@ def deleteJornada(request, id_jornada):
 	if art:
 		art.delete()
 		return HttpResponseRedirect("/jornadas#eliminado")
+	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")
+
+def getAllPAcademico():
+	try:
+		_jornadas = ProgramasAcademico.objects.all()
+	except ProgramasAcademico.DoesNotExist:
+		_jornadas = None
+	return _jornadas
+
+
+def getPAcademicoById(id_pAcademico):
+	try:
+		art = ProgramasAcademico.objects.get(pk=id_pAcademico)
+	except ProgramasAcademico.DoesNotExist:
+		art = None
+	return art
+
+
+def listarPAcademico(request):
+	ctx ={
+		"programas" : getAllPAcademico()
+	}
+	return render_to_response("index_programs.html", ctx)
+
+
+def newPAcademico(request):
+	from school.forms import PAcademicoForm
+	if request.method == "POST":
+		form = PAcademicoForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/programas#agregada")
+	else:
+		form = PAcademicoForm()
+	ctx ={
+		"formulario": form
+	}
+	return render_to_response("form_programs.html", ctx, context_instance=RequestContext(request))
+
+
+def editPAcademico(request, id_pAcademico):
+	art = getJornadaById(id_pAcademico)
+	from school.forms import PAcademicoForm
+	if request.method == "POST":
+		form = PAcademicoForm(request.POST, instance=art)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect("/programas#editada")
+	else:
+		if art:
+			form = PAcademicoForm(instance=art)
+		else:
+			return HttpResponseRedirect("/programas#no-existe-esa-jornada")
+	ctx ={
+		"formulario": form
+	}
+	return render_to_response("form_programs.html", ctx, context_instance=RequestContext(request))
+
+
+def deletePAcademico(request, id_pAcademico):
+	art = getPAcademicoById(id_pAcademico)
+	if art:
+		art.delete()
+		return HttpResponseRedirect("/programass#eliminado")
 	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")

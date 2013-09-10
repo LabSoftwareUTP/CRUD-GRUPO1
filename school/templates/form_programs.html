@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {%block body%}
 <form method="post"  role="form" class="bs-example">
-	{% csrf_token %}
+{% csrf_token %}
 	<table>
 		{{formulario}}
 		<tr>
-			<td colspan="2">
+				<td colspan="2">
 				<a href="javascript:window.history.back()" class="btn btn-link" ><span class="glyphicon glyphicon-chevron-left"></span> regresar</a>
-				<input type="submit" class="btn btn-success" value="Crear Jornada" >
+				<input type="submit" class="btn btn-success" value="Crear Programas Academicos" >
 			</td>
 		</tr>
+
 	</table>
 </form>
 {%endblock%}
