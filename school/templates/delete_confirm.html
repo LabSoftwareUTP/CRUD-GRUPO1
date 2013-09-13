@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{%block body%}
+
+<div class="alert alert-warning">
+	<strong>Warning!</strong><p>Seguro que quiere eliminar <strong>{{obj}}</strong>?</p>
+	<p>Todos los elementos que referencien a {{obj}} ser&aacute;n eliminados.</p>
+</div>
+<form method="post">
+	{% csrf_token %}
+	<a href="javascript:window.history.back()" class="btn">
+		<span class="glyphicon glyphicon-chevron-left"></span> Regresar
+	</a>
+	<input type="submit" class="btn btn-danger" value="Si, Eliminar" />
+</form>
+{%endblock%}

@@ -38,6 +38,9 @@
 				<a href="{% url 'school.views.newJornada'%}" class="btn btn-success pull-right">
 					<span class="glyphicon glyphicon-plus"></span> Nueva Jornada
 				</a>
+				<a href="/" class="btn pull-right">
+					<span class="glyphicon glyphicon-chevron-left"></span> Regresar
+				</a>
 			</div>
 		</div>
 	</div>
@@ -45,14 +48,7 @@
 {%block js%}
 <script type="text/javascript">
 	$(document).ready(function () {
-		$("a").tooltip({"placement":"left"}).on("click", function (e){
-			if($(this).attr("data-delete")){
-				e.preventDefault();
-				if (confirm("Seguro que quiere eliminar la jornada: "+ $(this).attr("data-delete") + "?")){
-					top.location = $(this).attr("href");
-				}
-			}
-		})
+		$("a").tooltip({"placement":"left"});
 	})
 </script>
 {%endblock%}

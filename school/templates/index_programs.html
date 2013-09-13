@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {%block body%}
 
+	<div class="panel panel-primary">
+		<div class="panel-heading">Listado de Programas Academicos</div>
+		<div class="panel-body">
+			<div class="table-responsive">
 				<table class="table table-hover table-bordered">
 					<tr>
 						<th>Nombre Programas Academicos</th>
+						<th>Jornada</th>
 						<th>Fecha de creaci&oacute;n</th>
-					
 						<th class="text-center">Acciones</th>
 					</tr>
 					{%for j in programas%}
@@ -14,9 +18,11 @@
 							<strong>{{j.nombre|title}}</strong>
 						</td>
 						<td>
+							{{j.id_jornada}}
+						</td>
+						<td>
 							{{j.fecha_creacion}}
 						</td>
-						
 						<td class="text-center">
 							<a href="{% url 'school.views.editPAcademico' j.id %}" title="Editar programa {{j.nombre|title}}">
 								<span class="glyphicon glyphicon-edit"></span>
@@ -33,8 +39,9 @@
 				<a href="{% url 'school.views.newPAcademico'%}" class="btn btn-success pull-right">
 					<span class="glyphicon glyphicon-plus"></span> Nuevo Programa
 				</a>
-				
-
+				<a href="/" class="btn pull-right">
+					<span class="glyphicon glyphicon-chevron-left"></span> Regresar
+				</a>
 			</div>
 		</div>
 	</div>

@@ -63,9 +63,12 @@ def editJornada(request, id_jornada):
 
 
 def deleteJornada(request, id_jornada):
-	art = getJornadaById(id_jornada)
-	if art:
-		art.delete()
+	_jornada = getJornadaById(id_jornada)
+	if _jornada:
+		if request.method == "POST":
+			_jornada.delete()
+		else:
+			return render_to_response("delete_confirm.html",{"obj": _jornada}, context_instance=RequestContext(request))
 		return HttpResponseRedirect("/jornadas#eliminado")
 	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")
 
