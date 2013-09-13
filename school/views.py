@@ -61,6 +61,16 @@ def editJornada(request, id_jornada):
 	}
 	return render_to_response("form.html", ctx, context_instance=RequestContext(request))
 
+from django.db.models.deletion import Collector
+from django.db import router
+
+
+def get_related(queryset):
+    using = router.db_for_read(queryset.model)
+    coll = Collector(using=using)
+    coll.collect(queryset)
+    return coll.data
+
 
 def deleteJornada(request, id_jornada):
 	_jornada = getJornadaById(id_jornada)
@@ -68,7 +78,12 @@ def deleteJornada(request, id_jornada):
 		if request.method == "POST":
 			_jornada.delete()
 		else:
-			return render_to_response("delete_confirm.html",{"obj": _jornada}, context_instance=RequestContext(request))
+			related_objs = _jornada.related_programas.all()
+			ctx = {
+				"obj": _jornada,
+				"related_objs": related_objs
+			}
+			return render_to_response("delete_confirm.html", ctx, context_instance=RequestContext(request))
 		return HttpResponseRedirect("/jornadas#eliminado")
 	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")
 

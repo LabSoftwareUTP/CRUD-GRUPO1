@@ -2,9 +2,22 @@
 {%block body%}
 
 <div class="alert alert-warning">
-	<strong>Warning!</strong><p>Seguro que quiere eliminar <strong>{{obj}}</strong>?</p>
-	<p>Todos los elementos que referencien a {{obj}} ser&aacute;n eliminados.</p>
+	<strong>Warning!</strong> Seguro que quiere eliminar <strong>{{obj}}</strong>?
 </div>
+{% if related_objs %}
+
+<div class="alert">
+	<p>Todos los elementos que referencien a <strong>{{obj}}</strong> ser&aacute;n eliminados</p>
+	<p>
+		<a href="{% url 'school.views.listarPAcademico' %}" class='alert-link'>Programas Acad&eacute;micos:</a>
+	</p>
+	<ul>
+	{% for o in related_objs %}
+		<li><a href="{% url 'school.views.listarPAcademico' %}?p={{ o.id }}">{{ o }}</a></li>
+	{% endfor %}
+	</ul>
+</div>
+{% endif %}
 <form method="post">
 	{% csrf_token %}
 	<a href="javascript:window.history.back()" class="btn">
