@@ -1,4 +1,5 @@
 #encoding:utf-8
+from tkinter import CASCADE
 from django.db import models
 
 
@@ -20,7 +21,7 @@ class ProgramasAcademico(models.Model):
 	nombre = models.CharField(max_length=100, null=False)
 	activo = models.BooleanField(default=True, null=False)
 	fecha_creacion = models.DateField(auto_now_add=True, null=False)
-	id_jornada = models.ForeignKey(Jornada, null=False, related_name='related_programas')
+	id_jornada = models.ForeignKey(Jornada, null=False, related_name='related_programas', on_delete=models.CASCADE)
 	
 	def __unicode__(self):
 			return self.nombre
