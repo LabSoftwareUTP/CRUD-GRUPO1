@@ -40,7 +40,7 @@ def newJornada(request):
 	ctx ={
 		"formulario": form
 	}
-	return render(request, "form.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form.html", ctx)
 
 
 def editJornada(request, id_jornada):

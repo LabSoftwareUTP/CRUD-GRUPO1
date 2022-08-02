@@ -5,9 +5,9 @@ from school.models import Jornada,ProgramasAcademico
 class JornadaForm(ModelForm):
     class Meta:
         model = Jornada
-        # fields = ['name', 'description', 'is_active']
+        fields = ['name', 'description']
 
 class PAcademicoForm(ModelForm):
     class Meta:
         model = ProgramasAcademico
-        # fields = ['name', 'description', 'is_active']
+        fields = ['nombre', 'description']
