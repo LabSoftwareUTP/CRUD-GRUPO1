@@ -25,7 +25,7 @@ class ProgramasAcademico(models.Model):
   description = models.TextField(max_length=300, blank=True, null=True)
   activo = models.BooleanField(default=True, null=False)
   fecha_creacion = models.DateField(auto_now_add=True, null=False)
-  id_jornada = models.ForeignKey(Jornada, null=False, related_name='related_programas', on_delete=models.CASCADE)
+  id_jornada = models.ForeignKey(Jornada, null=False, related_name='related_programas', on_delete=models.CASCADE, verbose_name="Jornada")
 	
   def __str__(self):
 			return self.nombre
