@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Jornada(models.Model):
-    name = models.CharField(max_length=150, verbose_name="Nome")
+    name = models.CharField(max_length=150, verbose_name="name")
     description = models.TextField(max_length=300, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -13,8 +13,8 @@ class Jornada(models.Model):
     def get_foreign_fields(self):
       return [getattr(self, f.name) for f in self._meta.fields if type(f) == models.fields.related.ForeignKey]
 
-    def __unicode__(self):
-        return "%s" % (self.name)
+    def __str__(self):
+        return self.name
 
 
 class ProgramasAcademico(models.Model):
@@ -24,5 +24,5 @@ class ProgramasAcademico(models.Model):
   fecha_creacion = models.DateField(auto_now_add=True, null=False)
   id_jornada = models.ForeignKey(Jornada, null=False, related_name='related_programas', on_delete=models.CASCADE)
 	
-  def __unicode__(self):
+  def __str__(self):
 			return self.nombre
