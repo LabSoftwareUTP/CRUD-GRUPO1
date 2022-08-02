@@ -23,11 +23,11 @@
 							{{j.date_modified}}
 						</td>
 						<td class="text-center">
-							<a href="{% url 'school.views.editJornada' j.id %}" title="Editar jornada {{j.name|title}}">
+							<a href="{% url 'edit-journey' j.id %}" title="Editar jornada {{j.name|title}}">
 								<span class="glyphicon glyphicon-edit"></span>
 							</a>
 
-							<a href="{% url 'school.views.deleteJornada' j.id %}" title="Eliminar jornada {{j.name|title}}" data-delete="{{j.name}}">
+							<a href="{% url 'delete-journey' j.id %}" title="Eliminar jornada {{j.name|title}}" data-delete="{{j.name}}">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
 						</td>
@@ -35,7 +35,7 @@
 					{%endfor%}
 				</table>
 				{%if not jornadas%}<p>No hay jornadas</p>{%endif%}
-				<a href="{% url 'school.views.newJornada'%}" class="btn btn-success pull-right">
+				<a href="{% url 'create-journey' %}" class="btn btn-success pull-right">
 					<span class="glyphicon glyphicon-plus"></span> Nueva Jornada
 				</a>
 				<a href="/" class="btn pull-right">

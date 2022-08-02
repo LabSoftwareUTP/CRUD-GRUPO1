@@ -1,7 +1,6 @@
 from school import views
 from django.urls import path
 
-
 jornadas_urls = [
     # path('school'),
     path('', views.listarJornadas, name="list-journey"),
