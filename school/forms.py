@@ -9,5 +9,5 @@ class JornadaForm(ModelForm):
 
 class PAcademicoForm(ModelForm):
     class Meta:
-		model = ProgramasAcademico
+        model = ProgramasAcademico
         # fields = ['name', 'description', 'is_active']
