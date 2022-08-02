@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from school.models import Jornada
 from school.models import ProgramasAcademico
@@ -25,7 +25,7 @@ def listarJornadas(request):
 	ctx ={
 		"jornadas" : getAllJornadas()
 	}
-	return render_to_response("index.html", ctx)
+	return render(request, "index.html", ctx)
 
 
 def newJornada(request):
@@ -40,7 +40,7 @@ def newJornada(request):
 	ctx ={
 		"formulario": form
 	}
-	return render_to_response("form.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form.html", ctx)
 
 
 def editJornada(request, id_jornada):
@@ -59,7 +59,7 @@ def editJornada(request, id_jornada):
 	ctx ={
 		"formulario": form
 	}
-	return render_to_response("form.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form.html", ctx, context_instance=RequestContext(request))
 
 from django.db.models.deletion import Collector
 from django.db import router
@@ -83,7 +83,7 @@ def deleteJornada(request, id_jornada):
 				"obj": _jornada,
 				"related_objs": related_objs
 			}
-			return render_to_response("delete_confirm.html", ctx, context_instance=RequestContext(request))
+			return render(request, "delete_confirm.html", ctx, context_instance=RequestContext(request))
 		return HttpResponseRedirect("/jornadas#eliminado")
 	return HttpResponseRedirect("/#no-hay-jornada-a-eliminar")
 
@@ -107,7 +107,7 @@ def listarPAcademico(request):
 	ctx ={
 		"programas" : getAllPAcademico()
 	}
-	return render_to_response("index_programs.html", ctx)
+	return render(request, "index_programs.html", ctx)
 
 
 def newPAcademico(request):
@@ -122,7 +122,7 @@ def newPAcademico(request):
 	ctx ={
 		"formulario": form
 	}
-	return render_to_response("form_programs.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form_programs.html", ctx)
 
 
 def editPAcademico(request, id_pAcademico):
@@ -141,7 +141,7 @@ def editPAcademico(request, id_pAcademico):
 	ctx ={
 		"formulario": form
 	}
-	return render_to_response("form_programs.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form_programs.html", ctx, context_instance=RequestContext(request))
 
 
 def deletePAcademico(request, id_pAcademico):
