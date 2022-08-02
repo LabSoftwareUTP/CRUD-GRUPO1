@@ -13,6 +13,9 @@ class Jornada(models.Model):
     def get_foreign_fields(self):
       return [getattr(self, f.name) for f in self._meta.fields if type(f) == models.fields.related.ForeignKey]
 
+    def get_date_added(self):
+      return self.date_added.strftime('%d/%m/%Y')
+
     def __str__(self):
         return self.name
 
