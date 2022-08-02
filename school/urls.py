@@ -10,8 +10,8 @@ jornadas_urls = [
 ]
 PAcademico_urls = [
     # path('school'),
-    path('', views.listarPAcademico),
-    path('new', views.newPAcademico),
-    path('edit/<int:id_pAcademico>', views.editPAcademico),
-    path('delete/<int:id_pAcademico>', views.deletePAcademico),
+    path('', views.listarPAcademico, name="list-academic"),
+    path('new', views.newPAcademico, name="create-academic"),
+    path('edit/<int:id_pAcademico>', views.editPAcademico, name="edit-academic"),
+    path('delete/<int:id_pAcademico>', views.deletePAcademico, name="delete-academic"),
 ]

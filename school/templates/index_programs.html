@@ -24,11 +24,11 @@
 							{{j.fecha_creacion}}
 						</td>
 						<td class="text-center">
-							<a href="{% url 'school.views.editPAcademico' j.id %}" title="Editar programa {{j.nombre|title}}">
+							<a href="{% url 'edit-academic' j.id %}" title="Editar programa {{j.nombre|title}}">
 								<span class="glyphicon glyphicon-edit"></span>
 							</a>
 							
-							<a href="{% url 'school.views.deletePAcademico' j.id %}" title="Eliminar programa {{j.nombre|title}}" data-delete="{{j.nombre}}">
+							<a href="{% url 'delete-academic' j.id %}" title="Eliminar programa {{j.nombre|title}}" data-delete="{{j.nombre}}">
 								<span class="glyphicon glyphicon-trash"></span>
 							</a>
 						</td>
@@ -36,7 +36,7 @@
 					{%endfor%}
 				</table>
 				{%if not programas%}<p>No hay programas</p>{%endif%}
-				<a href="{% url 'school.views.newPAcademico'%}" class="btn btn-success pull-right">
+				<a href="{% url 'create-academic'%}" class="btn btn-success pull-right">
 					<span class="glyphicon glyphicon-plus"></span> Nuevo Programa
 				</a>
 				<a href="/" class="btn pull-right">
