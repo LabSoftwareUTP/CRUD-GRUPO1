@@ -122,7 +122,7 @@ def newPAcademico(request):
 	ctx ={
 		"formulario": form
 	}
-	return render(request, "form_programs.html", ctx, context_instance=RequestContext(request))
+	return render(request, "form_programs.html", ctx)
 
 
 def editPAcademico(request, id_pAcademico):
